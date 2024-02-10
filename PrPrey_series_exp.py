@@ -43,8 +43,9 @@ def PrPr(Listparam):
     return DF_prpr
 
 
-SER_csv = 'series.csv'
 
+path = r"C:\\Users\\Alexander\\PycharmProjects\\SLAVA\\PrPrOUT\\"
+SER_csv =path+ 'series.csv'
 pars =['a', 'b','c','d','D1','D2']
 init_par = [1,0.1,0.5,0.02,0.01,0.01]
 
@@ -54,13 +55,13 @@ random.shuffle(pairs)
 series = ['ser','par1','par2']
 seriesM =[]
 #for ser in range(0, len(pairs)):
+CSV_par =path+ 'parameters.csv'
+colParams = ['series', 'exp', 'unique name', 'a', 'b', 'c', 'd', 'D1', 'D2']
+PAR =[]
 for ser in range(0, 3):
     DF = pd.DataFrame([init_par], columns=pars)
     seriesM.append([ser,pairs[ser][0],pairs[ser][1]])
 
-    CSV_par = str(ser)+'parameters.csv'
-    colParams = ['series', 'exp', 'unique name', 'a', 'b', 'c', 'd', 'D1', 'D2']
-    PAR =[]
     for exper in range (Nexp):
 
         unique = str(random.randint(100000, 999999))+'.csv'
@@ -69,13 +70,14 @@ for ser in range(0, 3):
         DF[pairs[ser][1]] = round(random.uniform(0, 0.05), 5)
 
         PAR.append([ser, exper, unique] + DF.iloc[0].tolist())    #????
-        print(DF.iloc[0].tolist())
+        #print(DF.iloc[0].tolist())
         DFRES=PrPr(DF.iloc[0].tolist())
 
         #PrPr
+        unique= path+unique
         DFRES.to_csv(unique, index=False)
-    dfPar = pd.DataFrame(PAR, columns=colParams)
-    dfPar.to_csv(CSV_par, index=False)
+dfPar = pd.DataFrame(PAR, columns=colParams)
+dfPar.to_csv(CSV_par, index=False)
 
 dfS = pd.DataFrame(seriesM, columns=series)
 dfS.to_csv(SER_csv, index=False)
