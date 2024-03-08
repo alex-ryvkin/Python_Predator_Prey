@@ -114,11 +114,12 @@ dt = 0.01  # time step size
 num_steps = 20000  # number of time steps
 # alpha = 0.1  # prey birth rate
 # beta = 0.02  # predation rate
-bounds = np.array([[0, 1], [0, 1]])
+#bounds = np.array([[0.05, 0.2], [0.01, 0.05]])
+bounds = np.array([[0.05, 1], [0.001, 0.05]])
 
 # Set the number of particles and iterations
-num_particles = 10
-num_iterations = 100
+num_particles = 50
+num_iterations = 50
 
 # Set the inertia weight, cognitive weight, and social weight
 inertia_weight = 0.7

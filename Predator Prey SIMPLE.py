@@ -54,7 +54,7 @@ time = np.arange(0,(num_steps+1)*dt,dt)
 # Solve the equations
 x_values, y_values = lotka_volterra(x0, y0, alpha, beta, gamma, delta, dt, num_steps)
 print(len(time),len(x_values))
-df = pd.DataFrame({'t': time, 'x': y_values, 'y': y_values})
+df = pd.DataFrame({'t': time, 'x': x_values, 'y': y_values})
 df.to_csv('PrePreSimple.csv', index=False)
 # Plot the results
 plt.plot(time,x_values, label='Prey')
